@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import DateAndTime from "./Components/DateAndTime";
 import SearchInput from './Components/SearchInput';
+import TemperatureIcon from './Components/TemperatureIcon';
 import { faBoltLightning, faCloud, faCloudRain, faCloudShowersHeavy, faCloudSun, faCloudSunRain, faSnowflake, faSun, faTemperatureEmpty, faTemperatureHalf, faTemperatureQuarter, faTemperatureLow, faTemperatureThreeQuarters, faUmbrella, faWind, faTemperatureHigh, faTemperatureFull, } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -29,28 +30,7 @@ function App() {
     }
   }
 
-  const svgs = <div>
-    <FontAwesomeIcon icon={faSun} />
-    <FontAwesomeIcon icon={faCloud} />
-    <FontAwesomeIcon icon={faUmbrella} />
-    <FontAwesomeIcon icon={faSnowflake} />
-    <FontAwesomeIcon icon={faWind} />
-    <FontAwesomeIcon icon={faCloudRain} />
-    <FontAwesomeIcon icon={faCloudSunRain} />
-    <FontAwesomeIcon icon={faCloudSun} />
-    <FontAwesomeIcon icon={faCloudShowersHeavy} />
-    <FontAwesomeIcon icon={faBoltLightning} />
-    <FontAwesomeIcon icon={faTemperatureEmpty} />
-    <FontAwesomeIcon icon={faTemperatureLow} />
-    <FontAwesomeIcon icon={faTemperatureQuarter} />
-    <FontAwesomeIcon icon={faTemperatureHalf} />
-    <FontAwesomeIcon icon={faTemperatureThreeQuarters} />
-    <FontAwesomeIcon icon={faTemperatureHigh} />
-    <FontAwesomeIcon icon={faTemperatureFull} />
-    <FontAwesomeIcon icon={faTemperatureFull} />
-    <FontAwesomeIcon icon={faTemperatureFull} />
 
-  </div>;
 
   const convertToHoursAndMins = unixTimestamp => {
     const date = new Date(unixTimestamp * 1000);
@@ -61,6 +41,7 @@ function App() {
     }
     return `${hours}:${minutes}`
   }
+
 
   return (
     <div className="app">
@@ -74,15 +55,26 @@ function App() {
           </div>
           <div className="temp">
             {Math.round(weather.main.temp)}°
+            <TemperatureIcon temp={weather.main.temp} />
           </div>
           <div className="weather">
             {weather.weather[0].description}
           </div>
           <DateAndTime />
-          <ul className="sunrise-sunset-box">
-            <li className="sunrise">{convertToHoursAndMins(weather.sys.sunrise)}</li>
-            <li className="sunset">{convertToHoursAndMins(weather.sys.sunset)}</li>
-          </ul>
+          <div className="sunrise-sunset-box">
+            <div className='sunrise-box'>
+              <h3>Sunrise</h3>
+              <div>
+                {convertToHoursAndMins(weather.sys.sunrise)}
+              </div>
+            </div>
+            <div className="sunset-box">
+              <h3>Sunset</h3>
+              <div>
+                {convertToHoursAndMins(weather.sys.sunset)}
+              </div>
+            </div>
+          </div>
         </div>
       ) : ('')}
     </div>

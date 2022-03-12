@@ -39,23 +39,32 @@ input[type="text"] {
   text-transform: capitalize;
 }
 
+.temeprature-icon-style {
+  margin-left: 10px;
+}
+
 .sunrise-sunset-box {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  list-style-type: none;
-  
 }
 
 .sunrise {
   min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .sunset {
   min-width: 80px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .svg-inline--fa {
-  font-size: 2em;
+  font-size: 1em;
 }
